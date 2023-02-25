@@ -33,7 +33,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     private static final String SALT = "yupi";
 
 
-
     @Resource
     private UserMapper userMapper;
 
@@ -135,6 +134,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
 
     @Override
     public User getSafetyUser(User originalUser) {
+        if (originalUser == null) {
+            return null;
+        }
         User safetyUser = new User();
         safetyUser.setId(originalUser.getId());
         safetyUser.setUsername(originalUser.getUsername());
