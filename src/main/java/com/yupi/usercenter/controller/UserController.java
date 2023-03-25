@@ -63,7 +63,7 @@ public class UserController {
         return userService.getSafetyUser(user);
     }
     @GetMapping("/search")
-    public List<User> searchUser(String username, HttpServletRequest request) {
+    public List<User> searchUsers(String username, HttpServletRequest request) {
         if (!isAdmin(request)) {
             return new ArrayList<>();
         }
@@ -74,6 +74,7 @@ public class UserController {
         }
         List<User> userList = userService.list(queryWrapper);
         return userList.stream().map(user -> userService.getSafetyUser(user)).collect(Collectors.toList());
+
     }
 
     @PostMapping("/delete")
